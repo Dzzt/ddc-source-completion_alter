@@ -1,3 +1,7 @@
+## Maintenance Status
+
+This plugin is primarily developed for personal use. Issues and Pull Requests are not accepted. Feel free to fork this repository if you need customization.
+
 # ddc-source-completion_alter
 
 A lightweight and fast JSON-based completion source for [ddc.vim](https://github.com/Shougo/ddc.vim).
@@ -74,9 +78,9 @@ on_source = 'ddc.vim'
 
 ## Source Parameters
 
-| Parameter | Type | Default | Description |
-|---|---|---|---|
-| `jsonPath` | `string` | `""` | Absolute path to the JSON file containing completion candidates. |
+| Parameter  | Type     | Default | Description                                                      |
+| ---------- | -------- | ------- | ---------------------------------------------------------------- |
+| `jsonPath` | `string` | `""`    | Absolute path to the JSON file containing completion candidates. |
 
 ## License
 
