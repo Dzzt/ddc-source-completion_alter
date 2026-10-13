@@ -1,0 +1,71 @@
+*ddc-source-completion_alter.txt*	JSON-based completion source for ddc.vim
+
+Author: Dzzt
+License: MIT license
+
+CONTENTS				*ddc-source-completion_alter-contents*
+
+Introduction		|ddc-source-completion_alter-introduction|
+Install			|ddc-source-completion_alter-install|
+Examples		|ddc-source-completion_alter-examples|
+Params			|ddc-source-completion_alter-params|
+
+
+==============================================================================
+INTRODUCTION			*ddc-source-completion_alter-introduction*
+
+|ddc-source-completion_alter| is a lightweight source for |ddc.vim| that
+loads completion candidates from a structured JSON file.
+
+When combined with filters like |ddc-filter-matcher_head_alter|, candidates
+can be matched against fields like `abbr` or `menu` while inserting `word`.
+
+
+==============================================================================
+INSTALL					*ddc-source-completion_alter-install*
+
+Please install both "ddc.vim" and "denops.vim".
+
+https://github.com/Shougo/ddc.vim
+https://github.com/vim-denops/denops.vim
+
+
+==============================================================================
+EXAMPLES				*ddc-source-completion_alter-examples*
+
+>
+	call ddc#custom#patch_filetype('your_ft', #{
+	      \   sources: ['completion_alter'],
+	      \   sourceOptions: #{
+	      \     completion_alter: #{
+	      \       mark: '',
+	      \       minAutoCompleteLength: 1,
+	      \       matchers: ['matcher_head_alter'],
+	      \     },
+	      \   },
+	      \   filterParams: #{
+	      \     matcher_head_alter: #{
+	      \       matchKey: 'abbr',
+	      \     },
+	      \   },
+	      \   sourceParams: #{
+	      \     completion_alter: #{
+	      \       jsonPath: expand('~/.config/nvim/snippets/data.json'),
+	      \     },
+	      \   },
+	      \ })
+<
+
+==============================================================================
+PARAMS					*ddc-source-completion_alter-params*
+
+				*ddc-source-completion_alter-param-jsonPath*
+jsonPath	(string)
+		Absolute file path to the JSON file containing completion
+		items. The JSON file must be an array of objects containing
+		`word`, `abbr`, and `menu` properties.
+
+		Default: `""`
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:noet:fen:noet:
