@@ -1,18 +1,14 @@
-## Maintenance Status
-
-This plugin is primarily developed for personal use. Issues and Pull Requests are not accepted. Feel free to fork this repository if you need customization.
-
 # ddc-source-completion_alter
 
 A lightweight and fast JSON-based completion source for [ddc.vim](https://github.com/Shougo/ddc.vim).
 
-This plugin allows you to load structured completion items from a JSON file. It is designed to work seamlessly with custom matchers like [ddc-filter-matcher_head_alter](https://github.com/Dzzt/ddc-filter-matcher_head_alter), allowing users to filter items by label (`abbr`) or description (`menu`) while inserting the actual body (`word`).
+This plugin allows you to load structured completion items from a JSON file. By pairing it with `matcherKey = "abbr"`, you can easily filter items by their label (`abbr`) or description (`menu`) while inserting the actual body (`word`).
 
 ## Concept
 
 Standard snippet engines or heavy completion sources can add noticeable overhead when you only need a quick lookup table. `ddc-source-completion_alter` reads a simple JSON file and passes items directly to `ddc.vim` with minimal processing overhead for maximum performance.
 
-By setting `mark = ""` in your `sourceOptions`, you can leverage `ddc-ui-native`'s automatic column alignment, rendering a clean, grid-like completion popup.
+By leaving `mark` empty in your `sourceOptions`, you can leverage `ddc-ui-native`'s automatic column alignment to render a clean, grid-like completion popup.
 
 ## Requirements
 
@@ -46,17 +42,9 @@ fn["ddc#custom#patch_filetype"]("your_filetype", {
 
   sourceOptions = {
     completion_alter = {
-      -- Set mark to empty to allow ddc-ui-native to neatly align columns
-      mark = "",
       minAutoCompleteLength = 1,
-      matchers = { "matcher_head_alter" },
-    },
-  },
-
-  -- Configure matcher_head_alter to filter candidates using 'abbr'
-  filterParams = {
-    matcher_head_alter = {
-      matchKey = "abbr",
+      -- Use 'abbr' field for matching instead of 'word'
+      matcherKey = "abbr",
     },
   },
 
@@ -81,6 +69,10 @@ on_source = 'ddc.vim'
 | Parameter  | Type     | Default | Description                                                      |
 | ---------- | -------- | ------- | ---------------------------------------------------------------- |
 | `jsonPath` | `string` | `""`    | Absolute path to the JSON file containing completion candidates. |
+
+## Maintenance Status
+
+This plugin is primarily developed for personal use. Issues and Pull Requests are not accepted. Feel free to fork this repository if you need customization.
 
 ## License
 
